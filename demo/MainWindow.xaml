@@ -1,0 +1,39 @@
+<Window xmlns="https://github.com/avaloniaui" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:pages="clr-namespace:AvaloniaPrintToPDF.Demo.Pages" mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600" Width="800" Height="600" x:Class="AvaloniaPrintToPDF.Demo.MainWindow" Title="AvaloniaUI.PrintToPDF Demo">
+    <DockPanel LastChildFill="True">
+        <Menu Name="MainMenu" DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Save current page as PDF..." Command="{Binding SaveCurrentPageAsPDF}" />
+                <MenuItem Header="Save all pages as PDF..." Command="{Binding SaveAllPagesAsPDF}" />
+                <MenuItem Header="Save full window as PDF..." Command="{Binding SaveFullWindowAsPDF}" />
+                <MenuItem Header="Exit" Command="{Binding ExitCommand}" />
+            </MenuItem>
+            <MenuItem Header="Options">
+                <MenuItem Header="Light Theme" Command="{Binding SelectTheme}" CommandParameter="0">
+                    <MenuItem.Icon>
+                        <CheckBox BorderThickness="0" IsChecked="{Binding UseLightTheme}" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Dark Theme" Command="{Binding SelectTheme}" CommandParameter="1">
+                    <MenuItem.Icon>
+                        <CheckBox BorderThickness="0" IsChecked="{Binding UseDarkTheme}" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <TabControl TabStripPlacement="Left" Name="Pages">
+            <TabItem Header="Calendar">
+                <pages:CalendarPage/>
+            </TabItem>
+            <TabItem Header="Canvas">
+                <pages:CanvasPage/>
+            </TabItem>
+            <TabItem Header="TextBox">
+                <pages:TextBoxPage/>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>

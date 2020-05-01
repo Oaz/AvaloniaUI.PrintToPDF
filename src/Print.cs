@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Avalonia;
+using Avalonia.Layout;
+using Avalonia.Rendering;
+using Avalonia.VisualTree;
+using SkiaSharp;
+
+namespace AvaloniaPrintToPdf
+{
+  public static class Print
+  {
+    public static void ToFile(string fileName, params IVisual[] visuals) => ToFile(fileName, visuals.AsEnumerable());
+    public static void ToFile(string fileName, IEnumerable<IVisual> visuals)
+    {
+      using var doc = SKDocument.CreatePdf(fileName);
+      foreach (var visual in visuals)
+      {
+        var bounds = visual.Bounds;
+        var page = doc.BeginPage((float)bounds.Width, (float)bounds.Height);
+        var renderTarget = SkiaRenderTarget.Create(page);
+        ImmediateRenderer.Render(visual, renderTarget);
+        doc.EndPage();
+      }
+      doc.Close();
+    }
+
+    public static void OnPage(Size size, params ILayoutable[] layoutables) => OnPage(size, layoutables.AsEnumerable());
+    public static void OnPage(Size size, IEnumerable<ILayoutable> layoutables)
+    {
+      foreach (var layoutable in layoutables)
+      {
+        layoutable.Measure(size);
+        layoutable.Arrange(new Rect(layoutable.DesiredSize));
+      }
+    }
+  }
+}
