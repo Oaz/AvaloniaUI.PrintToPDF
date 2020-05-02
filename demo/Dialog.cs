@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Avalonia.Controls;
@@ -7,13 +8,20 @@ namespace AvaloniaPrintToPDF.Demo
 {
   static class Dialog
   {
-    public static Task<string> Save(string title, string filename)
+    public static async void Save(string title, string defaultFilename, Action<string> saveAction)
+    {
+      var filename = await Save(title, defaultFilename);
+      if (filename != null)
+        saveAction(filename);
+    }
+
+    public static Task<string> Save(string title, string defaultFilename)
     {
       var saveDialog = new SaveFileDialog()
       {
         Title = title,
         Filters = PDFFilters,
-        InitialFileName = filename
+        InitialFileName = defaultFilename
       };
       var mainWindow = (App.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
       return saveDialog.ShowAsync(mainWindow);
