@@ -1,5 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <UseControlOnNuget>False</UseControlOnNuget>
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
@@ -12,17 +13,14 @@
     </AvaloniaResource>
     <AvaloniaResource Include="Assets\*" />
     <AvaloniaResource Include="Assets\Fonts\*" />
+    <EmbeddedResource Include="Assets\Fonts\*.ttf" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.9.*" />
     <PackageReference Include="Avalonia.Desktop" Version="0.9.*" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="0.9.*" />
     <PackageReference Include="Avalonia.Controls.DataGrid" Version="0.9.*" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Assets\Fonts\*.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="../src/AvaloniaUI.PrintToPDF.csproj" />
+    <PackageReference Include="AvaloniaUI.PrintToPDF" Version="0.1.0" Condition="'$(UseControlOnNuget)'=='True'" />
+    <ProjectReference Include="../src/AvaloniaUI.PrintToPDF.csproj" Condition="'$(UseControlOnNuget)'=='False'" />
   </ItemGroup>
 </Project>

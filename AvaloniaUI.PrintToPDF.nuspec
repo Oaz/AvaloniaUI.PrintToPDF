@@ -1,0 +1,28 @@
+<package>
+  <metadata>
+    <id>AvaloniaUI.PrintToPDF</id>
+    <version>0.1.0</version>
+    <authors>oaz</authors>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/Oaz/AvaloniaUI.PrintToPDF</projectUrl>
+    <description>Create PDF documents from Avalonia UI visuals</description>
+    <releaseNotes>
+    </releaseNotes>
+    <copyright>Copyright © Olivier Azeau</copyright>
+    <language>en-US</language>
+    <tags>Avalonia Skia PDF</tags>
+    <dependencies>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="Avalonia" version="0.9.*" />
+        <dependency id="Avalonia.Skia" version="0.9.*" />
+        <dependency id="SkiaSharp" version="1.68.0" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+    <file src="src/bin/Release/netstandard2.1/AvaloniaUI.PrintToPDF.dll" target="lib/netstandard2.1" />
+    <file src="LICENSE" target="content/LICENSE" />
+  </files>
+</package>
