@@ -16,6 +16,13 @@ namespace AvaloniaPrintToPDF.Demo
     {
       this.window = window;
       window.Styles.Add(themes[0]);
+      if(Environment.GetCommandLineArgs().Contains("--pdf"))
+      {
+        var outputFilename = "batchAllPages.pdf";
+        Console.WriteLine($"Printing to {outputFilename}");
+        SaveAllPagesTo(outputFilename);
+        Environment.Exit(0);
+      }
     }
 
     private readonly Window window;
@@ -29,15 +36,14 @@ namespace AvaloniaPrintToPDF.Demo
       });
     }
 
-    public void SaveAllPagesAsPDF()
+    public void SaveAllPagesAsPDF() => Dialog.Save("Save all pages as PDF", "allPages.pdf", SaveAllPagesTo);
+
+    private void SaveAllPagesTo(string filename)
     {
-      Dialog.Save("Save all pages as PDF", "allPages.pdf", filename =>
-      {
-        var size = CurrentPage(window).Bounds;
-        var allPages = PagesHost(window).Items.Cast<TabItem>().Select(ti => ti.Content as Control).ToList();
-        Print.OnPage(maximumPageSize, allPages);
-        Print.ToFile(filename, allPages);
-      });
+      var size = CurrentPage(window).Bounds;
+      var allPages = PagesHost(window).Items.Cast<TabItem>().Select(ti => ti.Content as Control).ToList();
+      Print.OnPage(maximumPageSize, allPages);
+      Print.ToFile(filename, allPages);
     }
 
     public void SaveFullWindowAsPDF()
