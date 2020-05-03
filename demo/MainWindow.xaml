@@ -9,7 +9,7 @@
                 <MenuItem Header="Save current page as PDF..." Command="{Binding SaveCurrentPageAsPDF}" />
                 <MenuItem Header="Save all pages as PDF..." Command="{Binding SaveAllPagesAsPDF}" />
                 <MenuItem Header="Save full window as PDF..." Command="{Binding SaveFullWindowAsPDF}" />
-                <MenuItem Header="Exit" Command="{Binding ExitCommand}" />
+                <MenuItem Header="Exit" Command="{Binding ExitApp}" />
             </MenuItem>
             <MenuItem Header="Options">
                 <MenuItem Header="Light Theme" Command="{Binding SelectTheme}" CommandParameter="0">
@@ -24,7 +24,7 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <TabControl TabStripPlacement="Left" Name="Pages">
+        <TabControl TabStripPlacement="Left">
             <TabItem Header="Calendar">
                 <pages:CalendarPage/>
             </TabItem>

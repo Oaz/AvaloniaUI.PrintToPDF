@@ -25,15 +25,5 @@ namespace AvaloniaPrintToPdf
       }
       doc.Close();
     }
-
-    public static void OnPage(Size size, params ILayoutable[] layoutables) => OnPage(size, layoutables.AsEnumerable());
-    public static void OnPage(Size size, IEnumerable<ILayoutable> layoutables)
-    {
-      foreach (var layoutable in layoutables)
-      {
-        layoutable.Measure(size);
-        layoutable.Arrange(new Rect(layoutable.DesiredSize));
-      }
-    }
   }
 }

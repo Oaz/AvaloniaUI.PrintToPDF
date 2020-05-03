@@ -31,7 +31,9 @@ namespace AvaloniaPrintToPDF.Demo
     {
       Dialog.Save("Save current page as PDF", "currentPage.pdf", filename =>
       {
-        var output = CurrentPage(window);
+        var output = from tabItem in window.FindAllVisuals<TabItem>()
+                     where tabItem.IsSelected
+                     select tabItem.Content as Control;
         Print.ToFile(filename, output);
       });
     }
@@ -40,10 +42,9 @@ namespace AvaloniaPrintToPDF.Demo
 
     private void SaveAllPagesTo(string filename)
     {
-      var size = CurrentPage(window).Bounds;
-      var allPages = PagesHost(window).Items.Cast<TabItem>().Select(ti => ti.Content as Control).ToList();
-      Print.OnPage(maximumPageSize, allPages);
-      Print.ToFile(filename, allPages);
+      var allPages = from tabItem in window.FindAllVisuals<TabItem>()
+                     select tabItem.Content as Control;
+      Print.ToFile(filename, allPages.Layout(maximumPageSize));
     }
 
     public void SaveFullWindowAsPDF()
@@ -53,10 +54,6 @@ namespace AvaloniaPrintToPDF.Demo
         Print.ToFile(filename, window);
       });
     }
-
-    private Control CurrentPage(ILogical p) => (PagesHost(p).SelectedItem as TabItem).Content as Control;
-
-    private TabControl PagesHost(ILogical p) => p.Find<TabControl>("Pages");
 
     int selectedTheme = 0;
     readonly StyleInclude[] themes = {
@@ -81,5 +78,10 @@ namespace AvaloniaPrintToPDF.Demo
     public bool UseLightTheme => selectedTheme == 0;
 
     public bool UseDarkTheme => selectedTheme == 1;
+
+    public void ExitApp()
+    {
+      window.Close();
+    }
   }
 }
