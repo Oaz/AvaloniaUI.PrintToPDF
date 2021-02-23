@@ -11,16 +11,16 @@
     <AvaloniaResource Include="**\*.xaml">
       <SubType>Designer</SubType>
     </AvaloniaResource>
-    <AvaloniaResource Include="Assets\*" />
-    <AvaloniaResource Include="Assets\Fonts\*" />
-    <EmbeddedResource Include="Assets\Fonts\*.ttf" />
+    <AvaloniaResource Include="Assets\*"/>
+    <AvaloniaResource Include="Assets\Fonts\*"/>
+    <EmbeddedResource Include="Assets\Fonts\*.ttf"/>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.10.0" />
-    <PackageReference Include="Avalonia.Desktop" Version="0.10.0" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.0" />
-    <PackageReference Include="Avalonia.Controls.DataGrid" Version="0.10.0" />
-    <PackageReference Include="AvaloniaUI.PrintToPDF" Version="0.3.0" Condition="'$(UseControlOnNuget)'=='True'" />
-    <ProjectReference Include="../src/AvaloniaUI.PrintToPDF.csproj" Condition="'$(UseControlOnNuget)'=='False'" />
+    <PackageReference Include="Avalonia" Version="0.10.0"/>
+    <PackageReference Include="Avalonia.Desktop" Version="0.10.0"/>
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.0"/>
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="0.10.0"/>
+    <PackageReference Include="AvaloniaUI.PrintToPDF" Version="0.3.0" Condition="'$(UseControlOnNuget)'=='True'"/>
+    <ProjectReference Include="../src/AvaloniaUI.PrintToPDF.csproj" Condition="'$(UseControlOnNuget)'=='False'"/>
   </ItemGroup>
 </Project>

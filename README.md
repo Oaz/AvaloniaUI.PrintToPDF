@@ -15,7 +15,7 @@ Here is [a sample PDF file](https://github.com/Oaz/AvaloniaUI.PrintToPDF/raw/mas
 One of the simplest code is a full screenshot (in vector graphics) of a desktop app main window:
 
 ```C#
-AvaloniaPrintToPdf.Print.ToFile(
+AvaloniaUI.PrintToPDF.Print.ToFile(
   "app_screenshot.pdf",
    (Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime).MainWindow
 );
