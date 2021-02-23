@@ -2,7 +2,7 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 
-namespace AvaloniaPrintToPDF.Demo
+namespace AvaloniaUI.PrintToPDF.Demo
 {
     public class App : Application
     {

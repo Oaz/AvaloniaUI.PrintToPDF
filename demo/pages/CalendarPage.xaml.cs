@@ -1,8 +1,8 @@
+using System;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using System;
 
-namespace AvaloniaPrintToPDF.Demo.Pages
+namespace AvaloniaUI.PrintToPDF.Demo.Pages
 {
     public class CalendarPage : UserControl
     {

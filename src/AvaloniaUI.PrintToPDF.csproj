@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <Version>0.2.0</Version>
+    <Version>0.3.0</Version>
     <Authors>Olivier Azeau</Authors>
     <Product>AvaloniaUI.PrintToPDF</Product>
     <PackageId>$(Product)</PackageId>
@@ -17,9 +17,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.9.*" />
-    <PackageReference Include="Avalonia.Skia" Version="0.9.*" />
-    <PackageReference Include="SkiaSharp" Version="1.68.0" />
+    <PackageReference Include="Avalonia" Version="0.10.0" />
+    <PackageReference Include="Avalonia.Skia" Version="0.10.0" />
+    <PackageReference Include="SkiaSharp" Version="2.80.2" />
   </ItemGroup>
 
 </Project>

@@ -1,13 +1,13 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Avalonia;
-using Avalonia.Layout;
+using Avalonia.Media;
 using Avalonia.Rendering;
+using Avalonia.Skia;
+using Avalonia.Skia.Helpers;
 using Avalonia.VisualTree;
 using SkiaSharp;
 
-namespace AvaloniaPrintToPdf
+namespace AvaloniaUI.PrintToPDF
 {
   public static class Print
   {
@@ -19,8 +19,8 @@ namespace AvaloniaPrintToPdf
       {
         var bounds = visual.Bounds;
         var page = doc.BeginPage((float)bounds.Width, (float)bounds.Height);
-        var renderTarget = SkiaRenderTarget.Create(page);
-        ImmediateRenderer.Render(visual, renderTarget);
+        using var context = new DrawingContext(DrawingContextHelper.WrapSkiaCanvas(page, SkiaPlatform.DefaultDpi));
+        ImmediateRenderer.Render(visual, context);
         doc.EndPage();
       }
       doc.Close();

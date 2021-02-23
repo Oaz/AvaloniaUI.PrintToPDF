@@ -1,14 +1,11 @@
 using System;
 using System.Linq;
-using System.Reactive;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.LogicalTree;
 using Avalonia.Markup.Xaml.Styling;
-using AvaloniaPrintToPdf;
 using ReactiveUI;
 
-namespace AvaloniaPrintToPDF.Demo
+namespace AvaloniaUI.PrintToPDF.Demo
 {
   class Model : ReactiveObject
   {

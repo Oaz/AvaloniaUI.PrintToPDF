@@ -16,11 +16,11 @@
     <EmbeddedResource Include="Assets\Fonts\*.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.9.*" />
-    <PackageReference Include="Avalonia.Desktop" Version="0.9.*" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="0.9.*" />
-    <PackageReference Include="Avalonia.Controls.DataGrid" Version="0.9.*" />
-    <PackageReference Include="AvaloniaUI.PrintToPDF" Version="0.2.0" Condition="'$(UseControlOnNuget)'=='True'" />
+    <PackageReference Include="Avalonia" Version="0.10.0" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.10.0" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.0" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="0.10.0" />
+    <PackageReference Include="AvaloniaUI.PrintToPDF" Version="0.3.0" Condition="'$(UseControlOnNuget)'=='True'" />
     <ProjectReference Include="../src/AvaloniaUI.PrintToPDF.csproj" Condition="'$(UseControlOnNuget)'=='False'" />
   </ItemGroup>
 </Project>

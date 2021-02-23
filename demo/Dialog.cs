@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 
-namespace AvaloniaPrintToPDF.Demo
+namespace AvaloniaUI.PrintToPDF.Demo
 {
   static class Dialog
   {

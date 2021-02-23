@@ -1,7 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace AvaloniaPrintToPDF.Demo.Pages
+namespace AvaloniaUI.PrintToPDF.Demo.Pages
 {
     public class CanvasPage : UserControl
     {
