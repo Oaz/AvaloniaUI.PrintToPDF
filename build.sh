@@ -1,2 +1,1 @@
-dotnet build -c Release
-nuget pack AvaloniaUI.PrintToPDF.nuspec
+dotnet pack src/AvaloniaUI.PrintToPDF.csproj -c Release
