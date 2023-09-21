@@ -19,7 +19,7 @@
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.10.0" />
     <PackageReference Include="Avalonia.Skia" Version="0.10.0" />
-    <PackageReference Include="SkiaSharp" Version="2.80.2" />
+    <PackageReference Include="SkiaSharp" Version="2.88.6" />
   </ItemGroup>
 
 </Project>
