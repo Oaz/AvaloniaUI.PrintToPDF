@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml.Styling;
 using ReactiveUI;
 
 namespace AvaloniaUI.PrintToPDF.Demo
@@ -12,7 +11,6 @@ namespace AvaloniaUI.PrintToPDF.Demo
     public Model(Window window)
     {
       this.window = window;
-      window.Styles.Add(themes[0]);
       if(Environment.GetCommandLineArgs().Contains("--pdf"))
       {
         var outputFilename = "batchAllPages.pdf";
@@ -51,30 +49,6 @@ namespace AvaloniaUI.PrintToPDF.Demo
         Print.ToFile(filename, window);
       });
     }
-
-    int selectedTheme = 0;
-    readonly StyleInclude[] themes = {
-      new StyleInclude(new Uri("resm:Styles?assembly=AvaloniaUI.PrintToPDF.Demo"))
-      {
-          Source = new Uri("resm:Avalonia.Themes.Default.Accents.BaseLight.xaml?assembly=Avalonia.Themes.Default")
-      },
-      new StyleInclude(new Uri("resm:Styles?assembly=AvaloniaUI.PrintToPDF.Demo"))
-      {
-          Source = new Uri("resm:Avalonia.Themes.Default.Accents.BaseDark.xaml?assembly=Avalonia.Themes.Default")
-      }
-  };
-
-    public void SelectTheme(int themeIndex)
-    {
-      selectedTheme = themeIndex;
-      window.Styles[0] = themes[selectedTheme];
-      this.RaisePropertyChanged("UseLightTheme");
-      this.RaisePropertyChanged("UseDarkTheme");
-    }
-
-    public bool UseLightTheme => selectedTheme == 0;
-
-    public bool UseDarkTheme => selectedTheme == 1;
 
     public void ExitApp()
     {

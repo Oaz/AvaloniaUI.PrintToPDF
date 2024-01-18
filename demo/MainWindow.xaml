@@ -12,18 +12,6 @@
                 <MenuItem Header="Save full window as PDF..." Command="{Binding SaveFullWindowAsPDF}" />
                 <MenuItem Header="Exit" Command="{Binding ExitApp}" />
             </MenuItem>
-            <MenuItem Header="Options">
-                <MenuItem Header="Light Theme" Command="{Binding SelectTheme}" CommandParameter="0">
-                    <MenuItem.Icon>
-                        <CheckBox BorderThickness="0" IsChecked="{Binding UseLightTheme}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem Header="Dark Theme" Command="{Binding SelectTheme}" CommandParameter="1">
-                    <MenuItem.Icon>
-                        <CheckBox BorderThickness="0" IsChecked="{Binding UseDarkTheme}" />
-                    </MenuItem.Icon>
-                </MenuItem>
-            </MenuItem>
         </Menu>
         <TabControl TabStripPlacement="Left">
             <TabItem Header="Calendar">

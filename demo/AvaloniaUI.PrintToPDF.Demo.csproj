@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <UseControlOnNuget>False</UseControlOnNuget>
+    <UseControlOnNuget>True</UseControlOnNuget>
     <OutputType>WinExe</OutputType>
-    <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>net7.0;net8.0</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
     <Compile Update="**\*.xaml.cs">
@@ -16,11 +16,12 @@
     <EmbeddedResource Include="Assets\Fonts\*.ttf"/>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.10.0"/>
-    <PackageReference Include="Avalonia.Desktop" Version="0.10.0"/>
-    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.0"/>
-    <PackageReference Include="Avalonia.Controls.DataGrid" Version="0.10.0"/>
-    <PackageReference Include="AvaloniaUI.PrintToPDF" Version="0.3.0" Condition="'$(UseControlOnNuget)'=='True'"/>
+    <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)"/>
+    <PackageReference Include="Avalonia.Desktop" Version="$(AvaloniaVersion)"/>
+    <PackageReference Include="Avalonia.ReactiveUI" Version="$(AvaloniaVersion)"/>
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="$(AvaloniaVersion)"/>
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="AvaloniaUI.PrintToPDF" Version="0.4.0" Condition="'$(UseControlOnNuget)'=='True'"/>
     <ProjectReference Include="../src/AvaloniaUI.PrintToPDF.csproj" Condition="'$(UseControlOnNuget)'=='False'"/>
   </ItemGroup>
 </Project>

@@ -18,12 +18,6 @@
                  Watermark="Floating Watermark"
                  UseFloatingWatermark="True"
                  Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."/>
-        
-        <TextBox Width="200" Text="Validation Error">
-          <DataValidationErrors.Error>
-            <sys:Exception /> 
-          </DataValidationErrors.Error>
-        </TextBox>
 
         <TextBox Width="200"
                  Watermark="Password Box"
