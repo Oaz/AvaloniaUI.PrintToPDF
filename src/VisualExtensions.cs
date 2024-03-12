@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using Avalonia;
-using Avalonia.Collections;
 using Avalonia.Layout;
+using Avalonia.VisualTree;
 
 namespace AvaloniaUI.PrintToPDF
 {
@@ -33,16 +32,8 @@ namespace AvaloniaUI.PrintToPDF
         l.ApplyTemplate();
       if (root is T t)
         result.Add(t);
-      foreach (var child in GetVisualChildren(root))
+      foreach (var child in root.GetVisualChildren())
         FindAllVisuals(child, result);
     }
-    
-    static VisualExtensions()
-    {
-      var vcProperty = typeof(Visual).GetProperty("VisualChildren", BindingFlags.Instance | BindingFlags.NonPublic);
-      GetVisualChildren = root => (IAvaloniaList<Visual>) vcProperty!.GetValue(root);
-    }
-
-    public static readonly Func<Visual, IAvaloniaList<Visual>> GetVisualChildren;
   }
 }
