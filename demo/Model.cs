@@ -1,6 +1,6 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using ReactiveUI;
@@ -11,49 +11,47 @@ namespace AvaloniaUI.PrintToPDF.Demo
   {
     public Model(Window window)
     {
-      this.window = window;
+      _window = window;
       if(Environment.GetCommandLineArgs().Contains("--pdf"))
       {
         var outputFilename = "batchAllPages.pdf";
         Console.WriteLine($"Printing to {outputFilename}");
-        SaveAllPagesTo(outputFilename).GetAwaiter().GetResult();
+        Print.ToFileAsync(outputFilename, AllPages.Layout(_maximumPageSize)).GetAwaiter().GetResult();
         Environment.Exit(0);
       }
     }
 
-    private readonly Window window;
-    private readonly Size maximumPageSize = new Size(2000, 2000);
-    public void SaveCurrentPageAsPdf()
-    {
-      Dialog.Save("Save current page as PDF", "currentPage.pdf", async filename =>
+    private readonly Window _window;
+    private readonly Size _maximumPageSize = new Size(2000, 2000);
+
+    private IEnumerable<Control> AllPages =>
+      from tabItem in _window.FindAllVisuals<TabItem>()
+      select tabItem.Content as Control;
+
+    
+    public void SaveCurrentPageAsPdf() =>
+      Dialog.Save("Save current page as PDF", "currentPage.pdf", async stream =>
       {
-        var output = from tabItem in window.FindAllVisuals<TabItem>()
-                     where tabItem.IsSelected
-                     select tabItem.Content as Control;
-        await Print.ToFileAsync(filename, output);
+        var output = from tabItem in _window.FindAllVisuals<TabItem>()
+          where tabItem.IsSelected
+          select tabItem.Content as Control;
+        await Print.ToStreamAsync(stream, output);
       });
-    }
 
-    public void SaveAllPagesAsPdf() => Dialog.Save("Save all pages as PDF", "allPages.pdf", SaveAllPagesTo);
-
-    private async Task SaveAllPagesTo(string filename)
+    public void SaveAllPagesAsPdf() => Dialog.Save("Save all pages as PDF", "allPages.pdf", async stream =>
     {
-      var allPages = from tabItem in window.FindAllVisuals<TabItem>()
-                     select tabItem.Content as Control;
-      await Print.ToFileAsync(filename, allPages.Layout(maximumPageSize));
-    }
+      await Print.ToStreamAsync(stream, AllPages.Layout(_maximumPageSize));
+    });
 
-    public void SaveFullWindowAsPdf()
-    {
-      Dialog.Save("Save full window as PDF", "fullWindow.pdf", async filename =>
+    public void SaveFullWindowAsPdf() =>
+      Dialog.Save("Save full window as PDF", "fullWindow.pdf", async stream =>
       {
-        await Print.ToFileAsync(filename, window);
+        await Print.ToStreamAsync(stream, _window);
       });
-    }
 
     public void ExitApp()
     {
-      window.Close();
+      _window.Close();
     }
   }
 }

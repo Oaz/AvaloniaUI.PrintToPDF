@@ -1,36 +1,39 @@
 using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
-using Avalonia.Controls;
+using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Platform.Storage;
 
 namespace AvaloniaUI.PrintToPDF.Demo
 {
   static class Dialog
   {
-    public static async void Save(string title, string defaultFilename, Func<string,Task> saveAction)
+    public static async void Save(string title, string defaultFilename, Func<Stream,Task> saveAction)
     {
-      var filename = await Save(title, defaultFilename);
-      if (filename != null)
-        await saveAction(filename);
+      var file = await Save(title, defaultFilename);
+      if (file == null)
+        return;
+      await using var stream = await file.OpenWriteAsync();
+      await saveAction(stream);
     }
 
-    public static Task<string> Save(string title, string defaultFilename)
+    public static Task<IStorageFile> Save(string title, string defaultFilename)
     {
-      var saveDialog = new SaveFileDialog()
+      var saveDialog = new FilePickerSaveOptions()
       {
         Title = title,
-        Filters = PDFFilters,
-        InitialFileName = defaultFilename
+        FileTypeChoices = PdfFilters,
+        SuggestedFileName = defaultFilename
       };
-      var mainWindow = (App.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
-      return saveDialog.ShowAsync(mainWindow);
+      var mainWindow = (Application.Current!.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
+      return mainWindow!.StorageProvider.SaveFilePickerAsync(saveDialog);
     }
 
-    private static List<FileDialogFilter> PDFFilters => new List<FileDialogFilter>
+    private static FilePickerFileType[] PdfFilters => new FilePickerFileType[]
     {
-        new FileDialogFilter { Name = "PDF files (.pdf)", Extensions = new List<string> {"pdf"} },
-        new FileDialogFilter { Name = "All files", Extensions = new List<string> {"*"} }
+        new ("PDF files (.pdf)") { Patterns = new [] {"*.pdf"} },
+        new ("All files") {Patterns = new [] {"*"} }
     };
   }
 }

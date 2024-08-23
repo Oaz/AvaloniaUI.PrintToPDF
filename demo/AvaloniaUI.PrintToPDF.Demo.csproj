@@ -21,7 +21,7 @@
     <PackageReference Include="Avalonia.ReactiveUI" Version="$(AvaloniaVersion)"/>
     <PackageReference Include="Avalonia.Controls.DataGrid" Version="$(AvaloniaVersion)"/>
     <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
-    <PackageReference Include="AvaloniaUI.PrintToPDF" Version="0.5.0" Condition="'$(UseControlOnNuget)'=='True'"/>
+    <PackageReference Include="AvaloniaUI.PrintToPDF" Version="0.6.0" Condition="'$(UseControlOnNuget)'=='True'"/>
     <ProjectReference Include="../src/AvaloniaUI.PrintToPDF.csproj" Condition="'$(UseControlOnNuget)'=='False'"/>
   </ItemGroup>
 </Project>
