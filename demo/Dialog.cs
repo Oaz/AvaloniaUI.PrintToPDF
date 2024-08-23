@@ -8,11 +8,11 @@ namespace AvaloniaUI.PrintToPDF.Demo
 {
   static class Dialog
   {
-    public static async void Save(string title, string defaultFilename, Action<string> saveAction)
+    public static async void Save(string title, string defaultFilename, Func<string,Task> saveAction)
     {
       var filename = await Save(title, defaultFilename);
       if (filename != null)
-        saveAction(filename);
+        await saveAction(filename);
     }
 
     public static Task<string> Save(string title, string defaultFilename)

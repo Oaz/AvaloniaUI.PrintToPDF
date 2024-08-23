@@ -7,9 +7,9 @@
     <DockPanel LastChildFill="True">
         <Menu Name="MainMenu" DockPanel.Dock="Top">
             <MenuItem Header="File">
-                <MenuItem Header="Save current page as PDF..." Command="{Binding SaveCurrentPageAsPDF}" />
-                <MenuItem Header="Save all pages as PDF..." Command="{Binding SaveAllPagesAsPDF}" />
-                <MenuItem Header="Save full window as PDF..." Command="{Binding SaveFullWindowAsPDF}" />
+                <MenuItem Header="Save current page as PDF..." Command="{Binding SaveCurrentPageAsPdf}" />
+                <MenuItem Header="Save all pages as PDF..." Command="{Binding SaveAllPagesAsPdf}" />
+                <MenuItem Header="Save full window as PDF..." Command="{Binding SaveFullWindowAsPdf}" />
                 <MenuItem Header="Exit" Command="{Binding ExitApp}" />
             </MenuItem>
         </Menu>

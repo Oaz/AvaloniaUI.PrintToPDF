@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using ReactiveUI;
@@ -15,38 +16,38 @@ namespace AvaloniaUI.PrintToPDF.Demo
       {
         var outputFilename = "batchAllPages.pdf";
         Console.WriteLine($"Printing to {outputFilename}");
-        SaveAllPagesTo(outputFilename);
+        SaveAllPagesTo(outputFilename).GetAwaiter().GetResult();
         Environment.Exit(0);
       }
     }
 
     private readonly Window window;
     private readonly Size maximumPageSize = new Size(2000, 2000);
-    public void SaveCurrentPageAsPDF()
+    public void SaveCurrentPageAsPdf()
     {
-      Dialog.Save("Save current page as PDF", "currentPage.pdf", filename =>
+      Dialog.Save("Save current page as PDF", "currentPage.pdf", async filename =>
       {
         var output = from tabItem in window.FindAllVisuals<TabItem>()
                      where tabItem.IsSelected
                      select tabItem.Content as Control;
-        Print.ToFile(filename, output);
+        await Print.ToFileAsync(filename, output);
       });
     }
 
-    public void SaveAllPagesAsPDF() => Dialog.Save("Save all pages as PDF", "allPages.pdf", SaveAllPagesTo);
+    public void SaveAllPagesAsPdf() => Dialog.Save("Save all pages as PDF", "allPages.pdf", SaveAllPagesTo);
 
-    private void SaveAllPagesTo(string filename)
+    private async Task SaveAllPagesTo(string filename)
     {
       var allPages = from tabItem in window.FindAllVisuals<TabItem>()
                      select tabItem.Content as Control;
-      Print.ToFile(filename, allPages.Layout(maximumPageSize));
+      await Print.ToFileAsync(filename, allPages.Layout(maximumPageSize));
     }
 
-    public void SaveFullWindowAsPDF()
+    public void SaveFullWindowAsPdf()
     {
-      Dialog.Save("Save full window as PDF", "fullWindow.pdf", filename =>
+      Dialog.Save("Save full window as PDF", "fullWindow.pdf", async filename =>
       {
-        Print.ToFile(filename, window);
+        await Print.ToFileAsync(filename, window);
       });
     }
 
