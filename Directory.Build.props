@@ -1,6 +1,6 @@
 <Project>
     <PropertyGroup>
-        <AvaloniaVersion>11.0.6</AvaloniaVersion>
-        <SkiaSharpVersion>2.88.7</SkiaSharpVersion>
+        <AvaloniaVersion>11.1.3</AvaloniaVersion>
+        <SkiaSharpVersion>2.88.8</SkiaSharpVersion>
     </PropertyGroup>
 </Project>
